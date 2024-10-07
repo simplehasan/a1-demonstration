@@ -9,7 +9,7 @@
 - Implement mechanisms for certificate revocation in case of compromise or expiration.
 
 ## Preparation
-- Repository  [link](https://github.com/simplehasan/public-key-infrastructure.git?target=_blank)
+- Repository  [link](https://github.com/simplehasan/public-key-infrastructure.git)
 ```bash
 # Make the repo visibility to public
 
@@ -77,7 +77,7 @@ python3 app.py
 - [ ] Input Sub CA common name
 - [ ] Display encrypted CSR, compare with original CSR from Sub CA folder
 - [ ] Issue certificate for Sub CA (menu 7) and input Sub CA’s common name - refer to this [code](https://github.com/simplehasan/public-key-infrastructure/blob/main/root_ca.py#L268)
-- [ ] Display the certificate detail in terminal and folder, compare with this [online certificate decoder]()
+- [ ] Display the certificate detail in terminal and folder, compare with this [online certificate decoder](https://www.sslshopper.com/certificate-decoder.html)
 > Explanation: Root CA will verify the Sub CA csr first using Sub CA’s provided public key, and if it’s verified, Root CA will issue certificate for Sub CA
 - [ ] Validate Sub CA certificate (menu 8), input sub CA common name - refer to this [code](https://github.com/simplehasan/public-key-infrastructure/blob/main/crypto_utils.py#L582)
 - [ ] Show the validation status in terminal
