@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>a1-demo.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="public-key-certificate-system-demonstration">Public Key Certificate System Demonstration</h1>
+<h2 id="assignment-brief">Assignment Brief</h2>
+<p><strong>Public key certificate system</strong>: Design a public key certificate system that involves one root CA, two sub-CAs and three clients:</p>
+<ul>
+<li>Implement functionalities for the root CA to generate its own private/public key pair.</li>
+<li>Develop functions for issuing certificates for clients, including necessary attributes such as client ID, public key, and validity period.</li>
+<li>Implement client registration functionality, allowing clients to provide their identity and public key.</li>
+<li>Develop a mechanism for clients to submit certificate requests to the CA. The request should be encrypted.</li>
+<li>Develop methods for validating certificates using the corresponding public keys and CA signatures.</li>
+<li>Implement mechanisms for certificate revocation in case of compromise or expiration.</li>
+</ul>
+<h2 id="preparation">Preparation</h2>
+<ul>
+<li>Repository  <a href="https://github.com/simplehasan/public-key-infrastructure.git">link</a>{:target=&quot;_blank&quot;}</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment"># Make the repo visibility to public</span>
+
+<span class="hljs-comment"># 1. Clone the repo</span>
+git <span class="hljs-built_in">clone</span> https://github.com/simplehasan/public-key-infrastructure.git
+
+<span class="hljs-comment"># 2. Go to code directory</span>
+<span class="hljs-built_in">cd</span> public-key-infrastructure
+
+<span class="hljs-comment"># 3. Install requirements</span>
+pip3 install -r requirements.txt
+
+<span class="hljs-comment"># 4. Run the program</span>
+python3 app.py
+</div></code></pre>
+<hr>
+<blockquote>
+<p><strong>Aaditya</strong></p>
+</blockquote>
+<h2 id="1-root-ca-initilization-menu-1">1. Root CA Initilization (menu 1)</h2>
+<p>🧑‍💻 <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/root_ca.py#L65">source code</a></p>
+<ul>
+<li><input type="checkbox" id="checkbox0"><label for="checkbox0">Input Root CA common name</label></li>
+<li><input type="checkbox" id="checkbox1"><label for="checkbox1">Display plaintext keypair (e), (d)</label></li>
+<li><input type="checkbox" id="checkbox2"><label for="checkbox2">Display PEM format of Keypair (public, private)</label></li>
+</ul>
+<h2 id="2-root-ca-self-signed-certificate-menu-2-and-3">2. Root CA self signed certificate (menu 2 and 3)</h2>
+<p>🧑‍💻 <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/root_ca.py#L119">source code</a></p>
+<ul>
+<li><input type="checkbox" id="checkbox3"><label for="checkbox3">Generate self-signed certificate for Root CA (menu 2)</label></li>
+<li><input type="checkbox" id="checkbox4"><label for="checkbox4">Display Certificate detail (menu 3)</label></li>
+</ul>
+<h2 id="3-revoke-root-ca-certificate-menu-4">3. Revoke Root CA certificate (menu 4)</h2>
+<p>🧑‍💻 <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/root_ca.py#L193">source code</a></p>
+<ul>
+<li><input type="checkbox" id="checkbox5"><label for="checkbox5">Revoke root CA certificate</label></li>
+<li><input type="checkbox" id="checkbox6"><label for="checkbox6">Display the new certificate</label></li>
+<li><input type="checkbox" id="checkbox7"><label for="checkbox7">Display CRL certificate</label></li>
+</ul>
+<blockquote>
+<p>back to main menu, go to menu 2 (Sub CA)</p>
+</blockquote>
+<h2 id="4-sub-ca-initialization">4. Sub CA Initialization</h2>
+<p>🧑‍💻 <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/sub_ca.py#L64">source code</a></p>
+<ul>
+<li><input type="checkbox" id="checkbox8"><label for="checkbox8">Generate key pair (menu 1) - refer to this </label><a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/crypto_utils.py#L15">code</a></li>
+<li><input type="checkbox" id="checkbox9"><label for="checkbox9">Display key pair in plain text - refer to this </label><a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/crypto_utils.py#L214">code</a></li>
+<li><input type="checkbox" id="checkbox10"><label for="checkbox10">Display key pair in PEM format (inside key folder)</label></li>
+</ul>
+<h2 id="5-sub-ca-register-profile-data-menu-2">5. Sub CA Register Profile Data (Menu 2)</h2>
+<p>🧑‍💻 <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/sub_ca.py#L87">source code</a></p>
+<ul>
+<li><input type="checkbox" id="checkbox11"><label for="checkbox11">Input profile data - refer to this </label><a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/sub_ca.py#L726">code</a></li>
+<li><input type="checkbox" id="checkbox12"><label for="checkbox12">Display profile data in the folder (.txt and .sig file)</label></li>
+</ul>
+<h2 id="6-sub-ca-profile-data-validation-root-ca-menu">6. Sub CA Profile Data validation (Root CA Menu)</h2>
+<p>🧑‍💻 <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/crypto_utils.py#L582">source code</a></p>
+<ul>
+<li><input type="checkbox" id="checkbox13"><label for="checkbox13">Open Root CA menu in new terminal</label></li>
+<li><input type="checkbox" id="checkbox14"><label for="checkbox14">Verify Sub CA profile Data (menu 5)</label></li>
+</ul>
+<blockquote>
+<p>Explanation : The Sub CA wont be able to generate CSR until Root CA verifies Sub CA’s profile, and create csr folder for Sub CA to submit their CSR. Root CA send back Sub CA profile with UUID (txt and sig file)</p>
+</blockquote>
+<ul>
+<li><input type="checkbox" id="checkbox15"><label for="checkbox15">Display Sub CA update profile folder</label></li>
+<li><input type="checkbox" id="checkbox16"><label for="checkbox16">Display Sub CA csr folder (commonName_csr)</label></li>
+</ul>
+<h2 id="6-sub-ca-csr-generation-and-encryption-menu-3">6. Sub CA CSR generation and Encryption (Menu 3)</h2>
+<p>🧑‍💻 <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/sub_ca.py#L133">source code</a></p>
+<ul>
+<li><input type="checkbox" id="checkbox17"><label for="checkbox17">Generate CSR for Sub CA, input the target CSR signer (root) - refer to this </label><a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/crypto_utils.py#L103">code</a></li>
+<li><input type="checkbox" id="checkbox18"><label for="checkbox18">Display CSR file in the Sub CA csr folder</label></li>
+<li><input type="checkbox" id="checkbox19"><label for="checkbox19">Encrypt and send CSR file to Root CA (Menu 4) - refer to this </label><a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/sub_ca.py#L203">code</a> and this <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/crypto_utils.py#L139">code</a></li>
+<li><input type="checkbox" id="checkbox20"><label for="checkbox20">Display encrypted CSR and AES Key - refer to this code</label></li>
+</ul>
+<blockquote>
+<p>Explanation: CSR will be encrypted using AES key (symmetric encryption) and the AES key will be <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/crypto_utils.py#L269">encrypted</a> using target CA (root) public key. The IV will be decoded into Base64. read</p>
+</blockquote>
+<ul>
+<li><input type="checkbox" id="checkbox21"><label for="checkbox21">Go to Root CA for CSR decrypt process</label></li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>Tengku</strong></p>
+</blockquote>
+<h2 id="7-sub-ca-decryption-and-certificate-issuance-root-ca-menu">7. Sub CA Decryption and Certificate Issuance (Root CA menu)</h2>
+<p>🧑‍💻 <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/root_ca.py#L225">source code</a></p>
+<ul>
+<li><input type="checkbox" id="checkbox22"><label for="checkbox22">Open Root CA menu, go to menu 6 to decrypt Sub CA CSR</label></li>
+<li><input type="checkbox" id="checkbox23"><label for="checkbox23">Input Sub CA common name</label></li>
+<li><input type="checkbox" id="checkbox24"><label for="checkbox24">Display encrypted CSR, compare with original CSR from Sub CA folder</label></li>
+<li><input type="checkbox" id="checkbox25"><label for="checkbox25">Issue certificate for Sub CA (menu 7) and input Sub CA’s common name - refer to this </label><a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/root_ca.py#L268">code</a></li>
+<li><input type="checkbox" id="checkbox26"><label for="checkbox26">Display the certificate detail in terminal and folder, compare with this </label><a href="">online certificate decoder</a></li>
+</ul>
+<blockquote>
+<p>Explanation: Root CA will verify the Sub CA csr first using Sub CA’s provided public key, and if it’s verified, Root CA will issue certificate for Sub CA</p>
+</blockquote>
+<ul>
+<li><input type="checkbox" id="checkbox27"><label for="checkbox27">Validate Sub CA certificate (menu 8), input sub CA common name - refer to this </label><a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/crypto_utils.py#L582">code</a></li>
+<li><input type="checkbox" id="checkbox28"><label for="checkbox28">Show the validation status in terminal</label></li>
+</ul>
+<blockquote>
+<p>Open new terminal for client</p>
+</blockquote>
+<h2 id="8-client-initialization">8. Client Initialization</h2>
+<p>🧑‍💻 <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/client.py#L65">source code</a></p>
+<ul>
+<li><input type="checkbox" id="checkbox29"><label for="checkbox29">Go to Client menu and initialize client key pair, input client’s common name (menu 1)</label></li>
+<li><input type="checkbox" id="checkbox30"><label for="checkbox30">Display client’s key pair in terminal and client’s folder</label></li>
+</ul>
+<h2 id="9-register-clients-profile">9. Register Client’s Profile</h2>
+<p>🧑‍💻 <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/client.py#L72">source code</a></p>
+<ul>
+<li><input type="checkbox" id="checkbox31"><label for="checkbox31">Register Client’s Profile (menu 2)</label></li>
+<li><input type="checkbox" id="checkbox32"><label for="checkbox32">Fill the client’s data and display the result in folder -  refer to this </label><a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/client.py#L55">code</a></li>
+<li><input type="checkbox" id="checkbox33"><label for="checkbox33">Go to Sub CA terminal to validate the Client’s registration data</label></li>
+</ul>
+<h2 id="10-process-client-registration-sub-ca-menu">10. Process Client Registration (Sub CA menu)</h2>
+<p>🧑‍💻 <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/sub_ca.py#L285">source code</a></p>
+<ul>
+<li><input type="checkbox" id="checkbox34"><label for="checkbox34">Process client’s registration (menu 5), input client’s common name -  refer to this </label><a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/crypto_utils.py#L502">code</a></li>
+<li><input type="checkbox" id="checkbox35"><label for="checkbox35">Input Sub CA’s common name to sign the profile details including UUID</label></li>
+<li><input type="checkbox" id="checkbox36"><label for="checkbox36">Display the result in terminal and folder (client_profile, client_csr) - same as Sub CA method</label></li>
+</ul>
+<blockquote>
+<p>Go to client’s terminal</p>
+</blockquote>
+<h2 id="11-clients-csr-generation-and-encryption-client-menu">11. Client’s CSR generation and Encryption (Client Menu)</h2>
+<p>🧑‍💻 <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/client.py#L122">source code</a></p>
+<ul>
+<li><input type="checkbox" id="checkbox37"><label for="checkbox37">Generate Client’s CSR (menu 3)</label></li>
+<li><input type="checkbox" id="checkbox38"><label for="checkbox38">Input target CA common name, e.g. subca1</label></li>
+<li><input type="checkbox" id="checkbox39"><label for="checkbox39">Input client’s common name e.g. client1</label></li>
+<li><input type="checkbox" id="checkbox40"><label for="checkbox40">Display generated CSR in terminal and folder, compare with this </label><a href="https://certlogik.com/decoder/">online decoder</a></li>
+<li><input type="checkbox" id="checkbox41"><label for="checkbox41">Encrypt client’s CSR and send to corresponding Sub CA (menu 4) - refer to this </label><a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/client.py#L191">code</a></li>
+<li><input type="checkbox" id="checkbox42"><label for="checkbox42">Display the encrypted CSR in the folder</label></li>
+</ul>
+<blockquote>
+<p>Go to Sub CA’s terminal</p>
+</blockquote>
+<h2 id="12-clients-csr-decryption-and-certificat-issuance-sub-ca-menu">12. Client’s CSR Decryption and Certificat Issuance (Sub CA Menu)</h2>
+<p>🧑‍💻 <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/sub_ca.py#L292">source code</a></p>
+<ul>
+<li><input type="checkbox" id="checkbox43"><label for="checkbox43">Decrypt and Sign Client’s CSR , input client’s common name (menu 6) - refer to this </label><a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/sub_ca.py#L356">code</a></li>
+<li><input type="checkbox" id="checkbox44"><label for="checkbox44">Display the decrypted CSR in terminal and folder</label></li>
+<li><input type="checkbox" id="checkbox45"><label for="checkbox45">Input certificate recipient’s common name (e.g. client1)</label></li>
+</ul>
+<blockquote>
+<p>Explanation: Sub CA will validate the client’s CSR first before sign issue certificate</p>
+</blockquote>
+<ul>
+<li><input type="checkbox" id="checkbox46"><label for="checkbox46">Display client’s certificate in terminal and folder, compare with this </label><a href="">online certificate decoder</a></li>
+</ul>
+<blockquote>
+<p>We can also match the certificate with the private key here: <a href="https://www.sslshopper.com/certificate-key-matcher.html">Certificate Key Matcher</a></p>
+</blockquote>
+<ul>
+<li><input type="checkbox" id="checkbox47"><label for="checkbox47">Validate Client’s certificate (menu 7), provide certificate issuer and certificate holder common name, display the validation result in terminal - refer to this </label><a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/sub_ca.py#L448">code</a> and this code from <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/crypto_utils.py#L582">crypto_utils</a></li>
+</ul>
+<p><em><strong>[Note: All steps above can be repeated for each Sub CA and client]</strong></em></p>
+<hr>
+<blockquote>
+<p><strong>Abdullah</strong></p>
+</blockquote>
+<h2 id="13-client-revocation-request">13. Client Revocation Request</h2>
+<p>🧑‍💻 <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/client.py#L287">source code</a></p>
+<ul>
+<li><input type="checkbox" id="checkbox48"><label for="checkbox48">Go to client’s terminal and open revocation request (menu 6)</label></li>
+<li><input type="checkbox" id="checkbox49"><label for="checkbox49">Provide the revocation reason</label></li>
+</ul>
+<blockquote>
+<p>Explanation: revocation request will create a json file containing client’s data (reason, cert serial number,  and cert itself) and client’s signature (to ensure the request is original from the client)
+Display request json file in folder</p>
+</blockquote>
+<ul>
+<li><input type="checkbox" id="checkbox50"><label for="checkbox50">Open Sub CA terminal to process the revocation request</label></li>
+</ul>
+<h2 id="14-process-client-revocation-request">14. Process Client Revocation request</h2>
+<p>🧑‍💻 <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/sub_ca.py#L522">source code</a></p>
+<ul>
+<li><input type="checkbox" id="checkbox51"><label for="checkbox51">Process client revocation request (menu 9)</label></li>
+<li><input type="checkbox" id="checkbox52"><label for="checkbox52">Display the result in terminal and folder (sub ca crl, client certficate)</label></li>
+<li><input type="checkbox" id="checkbox53"><label for="checkbox53">Verify client’s certificate (before client generate new certificate) using menu 7, provide certificate owner (e.g. client1) and certificate issuer (e.g. subca1) -  refer to this </label><a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/sub_ca.py#L448">code</a></li>
+<li><input type="checkbox" id="checkbox54"><label for="checkbox54">Display the verification result in terminal</label></li>
+<li><input type="checkbox" id="checkbox55"><label for="checkbox55">Re-generate client’s key pair, details, and certificate using steps above</label></li>
+</ul>
+<h2 id="15-sub-ca-revocation-request">15. Sub CA Revocation Request</h2>
+<p>🧑‍💻 <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/sub_ca.py#L462">source code</a></p>
+<ul>
+<li><input type="checkbox" id="checkbox56"><label for="checkbox56">Go to Sub CA terminal and open Sub CA revocation request (menu 8)</label></li>
+<li><input type="checkbox" id="checkbox57"><label for="checkbox57">Provide the revocation reason</label></li>
+</ul>
+<blockquote>
+<p>Explanation: revocation request will create a json file containing Sub CA’s data (reason, cert serial number,  and cert itself) and SubCA signature (to ensure the request is original from the client)
+Display request json file in folder</p>
+</blockquote>
+<ul>
+<li><input type="checkbox" id="checkbox58"><label for="checkbox58">Open Root CA terminal to process the revocation request</label></li>
+</ul>
+<h2 id="16-process-sub-ca-revocation-request-root-menu">16. Process Sub CA revocation request (Root Menu)</h2>
+<p>🧑‍💻 <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/root_ca.py#L397">source code</a></p>
+<ul>
+<li><input type="checkbox" id="checkbox59"><label for="checkbox59">Process Sub CA revocation request (menu 9), confirm</label></li>
+<li><input type="checkbox" id="checkbox60"><label for="checkbox60">Provide the Sub CA common name (e.g. subca1)</label></li>
+<li><input type="checkbox" id="checkbox61"><label for="checkbox61">Display the result in terminal and RootCA’s crl folder</label></li>
+<li><input type="checkbox" id="checkbox62"><label for="checkbox62">Verify Sub CA’s certificate (menu 8) and display the result - refer to this </label><a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/crypto_utils.py#L582">code</a></li>
+<li><input type="checkbox" id="checkbox63"><label for="checkbox63">Re-generate Sub CA keypair, details, and certificate using steps above</label></li>
+</ul>
+<h2 id="17-root-ca-revocation-process">17. Root CA revocation Process</h2>
+<p>🧑‍💻 <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/root_ca.py#L193">source code</a></p>
+<ul>
+<li><input type="checkbox" id="checkbox64"><label for="checkbox64">Revoke own Root CA certifiate (menu 4)</label></li>
+<li><input type="checkbox" id="checkbox65"><label for="checkbox65">Display the result in terminal</label></li>
+<li><input type="checkbox" id="checkbox66"><label for="checkbox66">Try to verify SubCA’s certificate (menu 8) and show the result</label></li>
+</ul>
+<h2 id="18-test">18. Test</h2>
+<ul>
+<li><input type="checkbox" id="checkbox67"><label for="checkbox67">Initialize another SubCA (generate key pair, register, and generate CSR)</label></li>
+<li><input type="checkbox" id="checkbox68"><label for="checkbox68">Client generate CSR to root CA (menu 3), it should be error</label></li>
+<li><input type="checkbox" id="checkbox69"><label for="checkbox69">Client generate CSR to another Sub CA (e.g. subca2) and another Sub CA (e.g. subca1) try to issue certificate for client (menu 6 - Sub CA) - refer to this </label><a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/crypto_utils.py#L303">code</a></li>
+<li><input type="checkbox" id="checkbox70"><label for="checkbox70">Corresponding Sub CA issue certificate for client (menu 6 - Sub CA) , it should be failed because need certificate from root - refer to this </label><a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/sub_ca.py#L366">code</a></li>
+<li><input type="checkbox" id="checkbox71"><label for="checkbox71">Root CA issue Sub CA certificate</label></li>
+<li><input type="checkbox" id="checkbox72"><label for="checkbox72">Repeate, corresponding Sub CA issue certificate for client (menu 6 - Sub CA) - success, and verify client’s certificate</label></li>
+<li><input type="checkbox" id="checkbox73"><label for="checkbox73">Client verify certificate from another CA (not the issuer CA), it should be error - refer to this </label><a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/crypto_utils.py#L631">code</a></li>
+</ul>
+<blockquote>
+<p><em><strong>Please make the repo visibility to private again 👀 !!!</strong></em></p>
+</blockquote>
+<p><strong>THANK YOU 🙂</strong></p>
+
+</body>
+</html>
