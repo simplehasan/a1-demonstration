@@ -9,7 +9,7 @@
 - Implement mechanisms for certificate revocation in case of compromise or expiration.
 
 ## Preparation
-- Repository  [link](https://github.com/simplehasan/public-key-infrastructure.git){:target="_blank"}
+- Repository  [link](https://github.com/simplehasan/public-key-infrastructure.git?target=_blank)
 ```bash
 # Make the repo visibility to public
 
