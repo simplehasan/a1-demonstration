@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>index.md</title>
+<title>FIT5163 A1 Demo</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
 <style>
@@ -355,6 +355,7 @@ code {
 </style>
 
 <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+<link rel="shortcut icon" href="icon.png" type="image/x-icon">
 </head>
 <body>
   <script>
@@ -378,7 +379,7 @@ code {
 </ul>
 <h2 id="preparation">Preparation</h2>
 <ul>
-<li>Repository  <a href="https://github.com/simplehasan/public-key-infrastructure.git">link</a></li>
+<li>Repository  <a href="https://github.com/simplehasan/public-key-infrastructure.git" target="_blank">link</a></li>
 </ul>
 <pre class="hljs"><code><div><span class="hljs-comment"># Make the repo visibility to public</span>
 
@@ -456,7 +457,7 @@ python3 app.py
 <li><input type="checkbox" id="checkbox20"><label for="checkbox20">Display encrypted CSR and AES Key - refer to this code</label></li>
 </ul>
 <blockquote>
-<p>Explanation: CSR will be encrypted using AES key (symmetric encryption) and the AES key will be <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/crypto_utils.py#L269">encrypted</a> using target CA (root) public key. The IV will be decoded into Base64. read</p>
+<p>Explanation: CSR will be encrypted using AES key (symmetric encryption) and the AES key will be <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/crypto_utils.py#L269" target="_blank">encrypted</a> using target CA (root) public key. The IV will be decoded into Base64. read</p>
 </blockquote>
 <ul>
 <li><input type="checkbox" id="checkbox21"><label for="checkbox21">Go to Root CA for CSR decrypt process</label></li>
@@ -513,7 +514,7 @@ python3 app.py
 <li><input type="checkbox" id="checkbox37"><label for="checkbox37">Generate Client’s CSR (menu 3)</label></li>
 <li><input type="checkbox" id="checkbox38"><label for="checkbox38">Input target CA common name, e.g. subca1</label></li>
 <li><input type="checkbox" id="checkbox39"><label for="checkbox39">Input client’s common name e.g. client1</label></li>
-<li><input type="checkbox" id="checkbox40"><label for="checkbox40">Display generated CSR in terminal and folder, compare with this </label><a href="https://certlogik.com/decoder/">online decoder</a></li>
+<li><input type="checkbox" id="checkbox40"><label for="checkbox40">Display generated CSR in terminal and folder, compare with this </label><a href="https://certlogik.com/decoder/" target="_blank">online decoder</a></li>
 <li><input type="checkbox" id="checkbox41"><label for="checkbox41">Encrypt client’s CSR and send to corresponding Sub CA (menu 4) - refer to this </label><a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/client.py#L191" target="_blank">code</a></li>
 <li><input type="checkbox" id="checkbox42"><label for="checkbox42">Display the encrypted CSR in the folder</label></li>
 </ul>
@@ -531,13 +532,13 @@ python3 app.py
 <p>Explanation: Sub CA will validate the client’s CSR first before sign issue certificate</p>
 </blockquote>
 <ul>
-<li><input type="checkbox" id="checkbox46"><label for="checkbox46">Display client’s certificate in terminal and folder, compare with this </label><a href="">online certificate decoder</a></li>
+<li><input type="checkbox" id="checkbox46"><label for="checkbox46">Display client’s certificate in terminal and folder, compare with this </label><a href="https://www.sslshopper.com/certificate-decoder.html" target="_blank">online certificate decoder</a></li>
 </ul>
 <blockquote>
 <p>We can also match the certificate with the private key here: <a href="https://www.sslshopper.com/certificate-key-matcher.html" target="_blank">Certificate Key Matcher</a></p>
 </blockquote>
 <ul>
-<li><input type="checkbox" id="checkbox47"><label for="checkbox47">Validate Client’s certificate (menu 7), provide certificate issuer and certificate holder common name, display the validation result in terminal - refer to this </label><a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/sub_ca.py#L448" target="_blank">code</a> and this code from <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/crypto_utils.py#L582">crypto_utils</a></li>
+<li><input type="checkbox" id="checkbox47"><label for="checkbox47">Validate Client’s certificate (menu 7), provide certificate issuer and certificate holder common name, display the validation result in terminal - refer to this </label><a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/sub_ca.py#L448" target="_blank">code</a> and this code from <a href="https://github.com/simplehasan/public-key-infrastructure/blob/main/crypto_utils.py#L582" target="_blank">crypto_utils</a></li>
 </ul>
 <p><em><strong>[Note: All steps above can be repeated for each Sub CA and client]</strong></em></p>
 <hr>
